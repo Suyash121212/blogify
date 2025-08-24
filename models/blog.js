@@ -14,7 +14,7 @@ coverImageURL:{
 },
 createdBy:{
     type:Schema.Types.ObjectId,
-    ref:'user',
+    ref:'User',
 },
 
 },
@@ -23,5 +23,5 @@ createdBy:{
 }
 );
 
-const Blog = model('blog',blogSchema);
+const Blog = model('Blog',blogSchema);
 module.exports = Blog;

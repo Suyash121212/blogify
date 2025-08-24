@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { log } = require('console');
 const express = require('express');
 const path = require("path");
@@ -7,6 +8,8 @@ const cookieParser = require('cookie-parser');
 const { checkForAuthenticationCookie } = require('./middleware/authentication');
 const blogRoute = require('./routes/blog');
 const app = express();
+
+
 
 const Blog = require('./models/blog');
 // middleware to handle the req.body data
@@ -33,9 +36,10 @@ app.use('/user',userRoute);
 
 app.use('/blog',blogRoute);
 
-mongoose.connect('mongodb://127.0.0.1:27017/blogify').then((e)=>{console.log("mongoDB connected");
+mongoose.connect(process.env.MONGO_URL).then((e)=>{console.log("mongoDB connected");
 })
-const port = 8000;
+const port = process.env.PORT ;
 app.listen(port,()=>{
     console.log("server is running on http://localhost:"+port);
 })
+
